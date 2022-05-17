@@ -1,2 +1,0 @@
-some exercises/projects from book c, the complete reference
-(segmented by chapters)

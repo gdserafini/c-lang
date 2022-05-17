@@ -14,7 +14,7 @@ void enter_names(){
 
 void enter_notes(){
     for(int i = 0; i < STUD; i++){
-        printf("\n%s", n.names[i]);
+        printf("\n%s", n.names[i]);  //name x: note x
         printf(": Enter a note: ");
         scanf("%d", &n.notes[i]);
     }
@@ -34,7 +34,7 @@ void search(char name_s[LEN]){
 
     for(int i = 0; i < STUD; i++){
         if(name_s == n.names[i]){
-            position = i;
+            position = i;   //i = line (names) = position (array notes)
         }
     }
 
@@ -42,12 +42,12 @@ void search(char name_s[LEN]){
 }
 
 void print(int p, char name_p[LEN]){
-    printf("\nStudent: %s\n", name_p);
-    printf("Note: %d\n", n.notes[p]);
+    printf("\nStudent: %s\n", name_p);  //print name find() and note corresponding to matrix names
+    printf("Note: %d\n", n.notes[p]);   
 }
 
 int main(){
-    char ans = 'N';
+    char ans;
 
     enter_names();
     enter_notes();
@@ -60,12 +60,12 @@ int main(){
             if(check(&n)){
                 find();
             }
-            else{
+            else{  //chech = 0 -> finish the algoritm
                 printf("\nData base error.\n");
                 exit(0);
             }
         }
-    }while(ans != 'N');
+    }while(ans != 'N');  //ans = 'N' -> finish too
 
     return 0;
 }
