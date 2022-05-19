@@ -2,12 +2,14 @@
 #include <stdlib.h>
 #include "main.h"
 
-int calc_is_possible(int x, int y){
-    if(y != 0 && x < 2147483647 && y < 2147483647){
-        return 1;
+NUM n;
+
+int calc_is_possible(){
+    if(n.num2 == 0 || n.num1 > 2147483647 || n.num2 > 2147483647){
+        return 0;
     }
     else{
-        return 0;
+        return 1;
     }
 }
 
@@ -41,49 +43,61 @@ int functions(int (*pf)(int, int), int x, int y){
     return pf(x, y);
 }
 
-int main(){
-    int num1, num2, option, result;
+void enter_numbers(){
+    printf("\nEnter a number: ");
+    scanf("%d", &n.num1);
+
+    printf("Enter other number: ");
+    scanf("%d", &n.num2);
+}
+
+void enter_option(int* op){
+    printf("\n1 to add, 2 to sub, 3 to mult, 4 for div or 5 for exp: ");
+    scanf("%d", op);
+}
+
+void switch_func(int op){
     int (*pm)(int (*)(int, int), int, int);
 
     pm = functions;
 
-    printf("\nEnter a number: ");
-    scanf("%d", &num1);
+    switch(op){
+        case 1:
+            n.result = pm(addition, n.num1, n.num2);
+            break;
+        case 2:
+            n.result = pm(subtraction, n.num1, n.num2);
+            break;
+        case 3:
+            n.result = pm(multiplication, n.num1, n.num2);
+            break;
+        case 4:
+            n.result = pm(division, n.num1, n.num2);
+            break;
+        case 5:
+            n.result = pm(exponentiation, n.num1, n.num2);
+            break;
+        default:
+            printf("\nERROR2\n");
+            exit(0);
+    }
+}
 
-    printf("Enter other number: ");
-    scanf("%d", &num2);
+int main(){
+    int option;
 
-    if(calc_is_possible(num1, num2)){
-        printf("\n1 to add, 2 to sub, 3 to mult, 4 for div or 5 for exp: ");
-        scanf("%d", &option);
+    enter_numbers();
 
-        switch(option){
-            case 1:
-                result = pm(addition, num1, num2);
-                break;
-            case 2:
-                result = pm(subtraction, num1, num2);
-                break;
-            case 3:
-                result = pm(multiplication, num1, num2);
-                break;
-            case 4:
-                result = pm(division, num1, num2);
-                break;
-            case 5:
-                result = pm(exponentiation, num1, num2);
-                break;
-            default:
-                printf("\nERROR2\n");
-                exit(0);
-        }
+    if(calc_is_possible()){
+        enter_option(&option);
+        switch_func(option);
     }
     else{
         printf("\nERROR1\n");
         exit(0);
     }
 
-    printf("\n%d\n", result);
+    printf("\n%d\n", n.result);
 
     return 0;
 }
