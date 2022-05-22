@@ -1,33 +1,29 @@
-//bitwise operators (&, !, ^, ~, >>, <<)
-//"numeric password encryption" -> 2x -> compl bits (and back) - max number = 127 (01111111) -> last byte 
+//1º bits<<1   2º bits ~   3º bits >>1   -> considering the first byte (int)
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "main.h"
 
-int password[NUM];
-
-void enter_password(){
+void enter_password(int password[NUM]){
     for(int i = 0; i < NUM; i++){
-        printf("Enter a number (max: 127): ");
+        printf("Enter a number (max: 127 and > 0): ");
         scanf("%d", &password[i]);
     }
 
     printf("\n%d %d %d\n", password[0], password[1], password[2]);
 }
 
-void encrypt(){
+void encrypt(int password[NUM]){
     for(int i = 0; i < NUM; i++){
         password[i] = password[i] << 1;
         password[i] = ~password[i];
-        //password[i] = password[i] & 253; (test for n = 1 -> 2x -> ~ bits -> & -> | 1 -> 253 positive)
     }
 
     printf("\n%d %d %d\n", password[0], password[1], password[2]);
 }
 
-void descrypt(){
+void descrypt(int password[NUM]){
     for(int i = 0; i < NUM; i++){
-        //password[i] = password[i] | 4294967293; (test line 22)
         password[i] = ~password[i];
         password[i] = password[i] >> 1;
     }
@@ -35,10 +31,30 @@ void descrypt(){
     printf("\n%d %d %d\n", password[0], password[1], password[2]);
 }
 
+int is_possible(int password[NUM]){   
+    if(password[0] > 127 || password[0] < 0 
+    || password[1] > 127 || password[1] < 0 
+    || password[2] > 127 || password[2] < 0){
+        return 0;
+    }
+    else{
+        return 1;
+    }
+}
+
 int main(){    
-    enter_password();
-    encrypt();
-    descrypt();
+    int password[NUM];
+
+    enter_password(password);
+    
+    if(is_possible(password)){
+        encrypt(password);
+        descrypt(password);
+    }
+    else{
+        printf("\nERROR\n");
+        exit(0);
+    }
 
     return 0;
 }

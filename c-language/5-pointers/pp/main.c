@@ -2,13 +2,35 @@
 #include <stdlib.h>
 #include "main.h"
 
-int main(){
-    int ans;
+void simple_point(){
+    int num, *p, x;
+
+    num = 10;
+    p = &num;
+    x = *p;
+
+    printf("\n%d\n", num);
+    printf("\n%d\n", x);
+    printf("\n%d\n", *p);
+}
+
+void mult_point(){
+    int num, **p, *x, y;
+
+    num = 20;
+    x = &num;
+    p = &x;
+    y = **p;
+
+    printf("\n%d\n", num);
+    printf("\n%d\n", *x);
+    printf("\n%d\n", y);
+    printf("\n%d\n", **p);
+}
+
+void choose(int ans){
     void (*p1)();
     void (*p2)();
-
-    printf("\n1 for *p, 2 for **p: ");
-    scanf("%d", &ans);
 
     switch(ans){
         case 1:
@@ -23,29 +45,15 @@ int main(){
             printf("\nERROR\n");
             exit(0);
     }
+}
 
+int main(){
+    int answer;
+
+    printf("\n1 for *p, 2 for **p: ");
+    scanf("%d", &answer);
+
+    choose(answer);
+    
     return 0;
-}
-
-void simple_point(){
-    int num, *p, x;
-
-    num = 10;
-    p = &num;
-    x = *p;
-
-    printf("\n%d\n", x);
-    printf("\n%d\n", *p);
-}
-
-void mult_point(){
-    int num, **p, *x, y;
-
-    num = 20;
-    x = &num;
-    p = &x;
-    y = **p;
-
-    printf("\n%d\n", y);
-    printf("\n%d\n", **p);
 }

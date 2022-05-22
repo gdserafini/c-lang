@@ -39,7 +39,7 @@ int exponentiation(int x, int y){
     return res;
 }
 
-int functions(int (*pf)(int, int), int x, int y){
+int functions(int (*pf)(int, int), int x, int y){  //function pointer
     return pf(x, y);
 }
 
@@ -57,9 +57,9 @@ void enter_option(int* op){
 }
 
 void switch_func(int op){
-    int (*pm)(int (*)(int, int), int, int);
+    int (*pm)(int (*)(int, int), int, int);   //funtion pointer of function pointers
 
-    pm = functions;
+    pm = functions;   //select -> function pointer
 
     switch(op){
         case 1:
@@ -83,12 +83,10 @@ void switch_func(int op){
     }
 }
 
-int main(){
+void calculus(){
     int option;
 
-    enter_numbers();
-
-    if(calc_is_possible()){
+    if(calc_is_possible()){   //int -> num2 != 0
         enter_option(&option);
         switch_func(option);
     }
@@ -96,6 +94,11 @@ int main(){
         printf("\nERROR1\n");
         exit(0);
     }
+}
+
+int main(){
+    enter_numbers();   //2 numbers -> struct
+    calculus();
 
     printf("\n%d\n", n.result);
 

@@ -8,7 +8,8 @@ struct numbers{
 typedef struct numbers NUM;
 
 void generatte();
-int compare2();
+int commons_arrays();
 void compare();
 int has_zero();
 void print();
+int all_the_same();

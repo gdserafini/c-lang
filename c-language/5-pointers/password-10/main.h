@@ -10,7 +10,7 @@ typedef struct pass PASS;
 
 void general(PASS* p);
 void generate_password(PASS* p);
-void print_password(PASS* p);
+void print_password(PASS p);
 void generate_numbers(PASS* p);
 void generate_strings(PASS* p);
-void verif_error(PASS* p);
+int has_error(PASS p);

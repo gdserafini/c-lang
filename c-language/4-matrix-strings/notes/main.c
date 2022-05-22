@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "main.h"
 
 NOTES n;
@@ -29,43 +28,47 @@ void find(){
     search(name);
 }
 
-void search(char name_s[LEN]){
+void search(char name_search[LEN]){
     int position;
 
     for(int i = 0; i < STUD; i++){
-        if(name_s == n.names[i]){
+        if(name_search == n.names[i]){
             position = i;   //i = line (names) = position (array notes)
         }
     }
 
-    print(position, name_s);
+    print(position, name_search);
 }
 
-void print(int p, char name_p[LEN]){
-    printf("\nStudent: %s\n", name_p);  //print name find() and note corresponding to matrix names
-    printf("Note: %d\n", n.notes[p]);   
+void print(int posi, char name_print[LEN]){
+    printf("\nStudent: %s\n", name_print);  //print name find() and note corresponding to matrix names
+    printf("Note: %d\n", n.notes[posi]);   
 }
 
-int main(){
-    char ans;
-
-    enter_names();
-    enter_notes();
+void loop_find(){
+    char answer;
 
     do{
         printf("Do you want find some student? [Y/N] ");
-        scanf("%c", &ans);
+        scanf("%c", &answer);
 
-        if(ans == 'Y'){
-            if(check(&n)){
-                find();
-            }
-            else{  //chech = 0 -> finish the algoritm
+        if(answer == 'Y'){
+            if(has_error(n)){   // '\0' or 0 -> true
                 printf("\nData base error.\n");
                 exit(0);
             }
+            else{  
+                find();
+            }
         }
-    }while(ans != 'N');  //ans = 'N' -> finish too
+    }while(answer != 'N');  //ans = 'N' -> finish too
+}
+
+int main(){
+    printf("\nClass: names and notes\n");
+    enter_names();
+    enter_notes();
+    loop_find();
 
     return 0;
 }

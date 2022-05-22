@@ -1,5 +1,6 @@
-#define NUM 3 //numbers in the password (max 127 each)
+#define NUM 3 //3 numbers -> max 127 each
 
-void enter_password();
-void encrypt();
-void descrypt();
+void enter_password(int password[NUM]);
+void encrypt(int password[NUM]);
+void descrypt(int password[NUM]);
+int is_possible(int password[NUM]);

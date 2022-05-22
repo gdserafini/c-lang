@@ -3,32 +3,38 @@
 #include <string.h>
 #include "main.h"
 
-void check_notes(int* sum_n, NOTES* n){
+int check_notes(NOTES n){
+    int count_notes = 0;
+
     for(int i = 0; i < STUD; i++){
-        if(n->notes[i] == '\0'){
-            (*sum_n)++;
+        if(n.notes[i] == 0){
+            count_notes++;
         }               
     }
+
+    return count_notes;
 }
 
-void check_names(int* sum2_c, NOTES* n){
+int check_names(NOTES n){
+    int count_names = 0;
+
     for(int i = 0; i < STUD; i++){
-        if(n->names[i] == '\0'){
-            (*sum2_c)++;    
+        if(n.names[i] == '\0'){
+            count_names++;    
         }
     }
+
+    return count_names;
 }
 
-int check(NOTES* n){  //struct
-    int sum = 0, sum2 = 0;  //sum = 30 -> false
+int has_error(NOTES n){ 
+    int count = check_notes(n); 
+    int count2 = check_names(n);
 
-    check_notes(&sum, n); 
-    check_names(&sum2, n);
-
-    if(sum == 30 || sum2 == 30){    //check is false if every note or name = '\0'
-        return 0;
+    if(count == 30 || count2 == 30){    //check is false if every note or name = '\0'
+        return 1;
     }
     else{
-        return 1;
+        return 0;
     }
 }

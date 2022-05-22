@@ -1,5 +1,4 @@
-#define COUNT 3
+#define COUNT 3   //array length
 
-void test();
-void switch_test(int i, double a[COUNT]);
-void for_test(double a[COUNT]);
+void switch_cast(int i, double numbers[COUNT]);
+void cast_numbers(double numbers[COUNT]);

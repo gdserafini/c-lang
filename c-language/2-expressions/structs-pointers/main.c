@@ -1,16 +1,13 @@
-//poiters operators (&, *)
+//poiters operators (&, *), structs
 
 #include <stdio.h>
 #include "main.h"
 
 NUM n;
 
-int main(){
-    int sum = 0;
-
-    cont(&n);
-    sum_n(&sum, &n);
-    print(&sum, &n);
+int main(){     //print 2 arrays, 2ª = 2x 1ª array and sum    
+    values(&n);
+    sum_arrays(n);
 
     return 0;
 }

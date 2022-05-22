@@ -3,10 +3,17 @@
 #include <time.h>
 #include "main.h"
 
-void general(PASS* p){  // ''
+void general(PASS* p){  
     generate_password(p);
-    print_password(p);
-    verif_error(p);
+    
+    if(has_error(*p)){
+        printf("\nERROR\n");
+        exit(0);
+    }
+    else{
+        print_password(*p);
+        printf("\nteste3\n");
+    }
 }
 
 void generate_password(PASS* p){
@@ -14,18 +21,18 @@ void generate_password(PASS* p){
     generate_strings(p);
 }
 
-void print_password(PASS* p){
+void print_password(PASS p){
     printf("\n");
 
     for(int i = 0; i < SIZE; i++){
         for(int j = 0; j < SIZE; j++){
-            printf("%d", p->number[i][j]);
+            printf("%d", p.number[i][j]);
         }
     }
 
     for(int i = 0; i < SIZE; i++){
         for(int j = 0; j < SIZE; j++){
-            printf("%c", p->strings[i][j]);
+            printf("%c", p.strings[i][j]);
         }
     }
 
@@ -35,7 +42,7 @@ void print_password(PASS* p){
 void generate_numbers(PASS* p){
     for(int i = 0; i < SIZE; i++){
         for(int j = 0; j < SIZE; j++){
-            p->number[i][j] = rand() % 9;
+            p->number[i][j] = rand() % 9;   //number[i] (0-9)
         }
     }
 }
@@ -51,32 +58,32 @@ void generate_strings(PASS* p){
 
     for(int i = 0; i < SIZE; i++){
         for(int j = 0; j < SIZE; j++){
-            num = rand() % 23;
+            num = rand() % 23;   //aleatory number -> i
 
             p->strings[i][j] = letters[num];  //pick a aleatory letter from letter[] -> aleat i = num
         }
     }
 }
 
-void verif_error(PASS* p){ //equal or null
-    int count1 = 0, count2 = 0;
+int has_error(PASS p){ //equal or null (all)
+    int count_number = 0, count_strings = 0;
+    int size_matrix = 100;
 
-    for(int i = 0; i < SIZE - 1; i++){
-        if(p->number[i] == p->number[i+1]){
-            count1++;
-        }
-
-        for(int j = 0; j < SIZE - 1; j++){
-            if(p->strings[i][j] == p->strings[i][j+1]){
-                count2++;
+    for(int i = 0; i < SIZE; i++){
+        for(int j = 0; j < SIZE; j++){
+            if(p.number[i][j] == 0){
+                count_number++;
             }
-            else if(p->strings[i][j] == '\0'){
-                exit(0);
+            else if(p.strings[i][j] == '\0'){
+                count_strings++;
             }
         }
     }
 
-    if(count1 == SIZE || count2 == SIZE){
-        exit(0);
+    if(count_number == size_matrix || count_strings == size_matrix){ //size = i x j
+        return 1;                                                    
+    }
+    else{
+        return 0;
     }
 }

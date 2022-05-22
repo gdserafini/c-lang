@@ -1,11 +1,11 @@
-#define LEN 10
+#define LEN 10 //arrays length
 
-struct num{
+struct numbers{
     int number1[LEN], number2[LEN];
 };
 
-typedef struct num NUM;
+typedef struct numbers NUM;
 
-void cont(NUM* n);
-void sum_n(int* s, NUM* n);
-void print(int* s, NUM* n);
+void values(NUM* n);
+void sum_arrays(NUM n);
+void print(int s, NUM n);

@@ -6,7 +6,6 @@
 #include "main.h"
 
 NUM n;
-int qnt_zero = 0;
 
 void generatte(){   //10 aletory numbers (0-100)
     srand(time(0));
@@ -22,12 +21,6 @@ void generatte(){   //10 aletory numbers (0-100)
 int has_zero(){
     for(int i = 0; i < LEN; i++){   
         if(n.num1[i] == 0 || n.num2[i] == 0){
-            qnt_zero++;
-        }
-    }
-
-    for(int i = 0; i < LEN; i++){   //if it has zero -> finish the program
-        if(n.num1[i] == 0 || n.num2[i] == 0){
             return 1;
         }
     }
@@ -35,33 +28,56 @@ int has_zero(){
     return 0;
 }
 
-void compare(){
-    int common;
+int all_the_same(){
+    int count = 0;
 
-    if(has_zero()){     //has_zero = 1
-        printf("\n\n0: Broken loop. %d", qnt_zero);
-        printf("/100\n\n");
-        exit(0);    //terminate
+    for(int i = 0; i < LEN - 1; i++){
+        if(n.num1[i] == n.num1[i+1]){
+            count++;
+        }
+        else if(n.num2[i] == n.num2[i+1]){
+            count++;
+        }
+    }
+
+    if(count == 20){
+        return 1;
     }
     else{
-        common = compare2();
-        printf("\n\nCommons: %d\n\n", common);  //a single number in num2 common to every number in num1
+        return 0;
     }
 }
 
-int compare2(){
-    int c = 0;
+void compare(){
+    int commons;
+
+    if(has_zero()){     //has_zero = 1
+        printf("\n\n0: Broken loop.");
+        exit(0);    //terminate
+    }
+    else if(all_the_same()){   //2 arrays -> same number
+        printf("\n\nAll the same: Broken loop.\n\n");
+        exit(0);
+    }
+    else{
+        commons = commons_arrays();
+        printf("\n\nCommons: %d\n\n", commons);  //a single number in num2 common to every number in num1
+    }
+}
+
+int commons_arrays(){
+    int com = 0;
 
     for(int i = 0; i < LEN; i++){
         for(int j = 0; j < LEN; j++){
             if(n.num1[i] == n.num2[j]){
-                c++;
+                com++;
                 break;
             }
         }
     }
 
-    return c;   //commons
+    return com;   
 }
 
 void print(){
@@ -79,8 +95,8 @@ void print(){
 }
 
 int main(){
-    generatte();
+    generatte();      
     compare();
-
-    return 0;
+    
+    return 0; 
 }
