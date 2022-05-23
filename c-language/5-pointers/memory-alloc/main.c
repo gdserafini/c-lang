@@ -16,7 +16,7 @@ void choose(int op){
     }
 }
 
-void atrib_print1(int array[SIZE]){
+void atrib_print1(int *array){
     printf("\n");
 
     for(int i = 0; i < SIZE; i++){
@@ -28,7 +28,7 @@ void atrib_print1(int array[SIZE]){
     printf("\n\n");
 }
 
-void atrib_print2(int matrix[SIZE][SIZE]){
+void atrib_print2(int **matrix){
     printf("\n");
 
     for(int i = 0; i < SIZE; i++){
@@ -45,12 +45,6 @@ void atrib_print2(int matrix[SIZE][SIZE]){
 void mem_alloc1(){
     int* array = (int *)malloc(sizeof(int) * SIZE);
 
-    verif_array(array);
-
-    free(array);
-}
-
-void verif_array(int array[SIZE]){
     if(array = malloc(12)){
         atrib_print1(array);
     }
@@ -58,6 +52,8 @@ void verif_array(int array[SIZE]){
         printf("\nERROR\n");
         exit(0);
     }
+
+    free(array);
 }
 
 void mem_alloc2(){
@@ -68,7 +64,7 @@ void mem_alloc2(){
     }
 
     if(matrix[0] = malloc(12)){
-        atrib_print2(*matrix);
+        atrib_print2(matrix);
     }
     else{
         printf("\nERRO\n");
