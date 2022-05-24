@@ -1,10 +1,12 @@
+//STUD st[i] = 1 student -> SIZE = number of students
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "main.h"
 
 STUD st[SIZE];   
 
-int no_students(){
+int no_students(){   //verif -> every st.name = '\0'
     int count = 3;
 
     for(int i = 0; i < SIZE; i++){
@@ -22,12 +24,12 @@ int no_students(){
 }
 
 void enter_name(int ind_e_name){
-    printf("\nEnter the %dº name: ", ind_e_name+1);
+    printf("\nEnter the %dº name: ", ind_e_name+1);   //print order of names
     scanf("%s", st[ind_e_name].name);
 }
 
 void enter_note(int ind_e_note){
-    printf("\nEnter the note of %s: ", st[ind_e_note].name);
+    printf("\nEnter the note of %s: ", st[ind_e_note].name);   //print name of this note
     scanf("%d", &st[ind_e_note].note);
 }
 
@@ -46,36 +48,11 @@ void print_note(int ind_p_note){
     printf("\n%d", st[ind_p_note].note);
 }
 
-void print_students(){
+void print_students(){   //print all names and notes of this class
     for(int i = 0; i < SIZE; i++){
         print_name(i);
         print_note(i);
     }
-}
-
-void find_students(){
-    char name_want_find[LEN];
-
-    printf("\nEnter the name you want find: ");
-    scanf("%s", name_want_find);
-
-    int posi_find = search_student(name_want_find);
-
-    printf("\nName: %s", st[posi_find].name);
-    printf("\nNote: %d", st[posi_find].note);
-}
-
-int search_student(char *name_search){
-    int position;
-
-    for(int i = 0; i < SIZE; i++){
-        if(name_search == st[i].name){
-            position = i;
-            break;
-        }
-    }
-
-    return position;
 }
 
 int main(void){
@@ -83,14 +60,12 @@ int main(void){
 
     if(no_students()){
         enter_infos();
-        //print_students();   //test  
+        print_students();    
     }
     else{
         printf("\nData base error.\n\n");
         exit(0);
     }
-
-    find_students();
 
     return 0;
 }

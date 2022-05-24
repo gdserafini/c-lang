@@ -15,5 +15,3 @@ void enter_infos(void);
 void print_name(int ind_p_name);
 void print_note(int ind_p_note);
 void print_students(void);
-void find_students(void);
-int search_student(char *name_search);
