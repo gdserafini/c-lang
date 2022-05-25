@@ -1,15 +1,29 @@
 //algoritm -> enter char by char = string
 
 #include <stdio.h>
+#include <stdlib.h>
 
 //**PROTOTYPE**
 void enter_print_strings(void);
 void read_string_char(void);
-int getc(FILE *stream);
 
 int main(void){
-    enter_print_strings();
-    read_string_char();
+    int option;
+
+    printf("\n1 - string, 2 - char: ");
+    scanf("%d", &option);
+
+    switch(option){
+        case 1:
+            enter_print_strings();
+            break;
+        case 2:
+            read_string_char();
+            break;
+        default:
+            printf("\nERROR\n");
+            exit(0);
+    }
 
     return 0;
 }
@@ -18,22 +32,19 @@ int main(void){
 
 //**read string -> print
 void enter_print_strings(){
-    char string1[10], string2[10];
+    char string[10];
 
-    gets(string1);
-    printf("%s", string1);
-
-    scanf("%s", string2);
-    printf("%s", string2);
+    scanf("%s", string);
+    printf("\n%s\n", string);
 }
 
 //**??enter char by char -> put on the string??
 void read_string_char(){
-    char string3[10];
+    char string2[10];
 
     for(int i = 0; i < 10; i++){
-        string3[i] = getc(stdin);
+        scanf("%c\n", &string2[i]);
     }
 
-    printf("%s", string3);
+    printf("%s\n", string2);
 }
