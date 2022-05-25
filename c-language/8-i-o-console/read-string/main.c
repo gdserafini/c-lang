@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "main.h"
 
 int main(){
     char string1[10], string2[10], ch;
