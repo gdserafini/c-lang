@@ -73,7 +73,7 @@ void console_write_file(){
     fseek(f, 0, SEEK_END);
 }
 
-/* ENTER -> END  */
+/* ENTER -> END */
 int console_end_file(char char_end){
     if(char_end == END_ENTER){
         return 1;
