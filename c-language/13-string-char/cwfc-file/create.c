@@ -24,7 +24,7 @@ void verif_error_create(){
 
 /* CHECK IF IS A .TXT FILE */
 int verif_name(int n){
-    if(n > STR_LEN){
+    if(n > strlen(file_name)){
         printf("\nERROR - ENTER A .TXT FILE\n");
         exit(0);
     }

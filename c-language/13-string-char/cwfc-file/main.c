@@ -14,6 +14,7 @@ int main(void){
 
     enter_file_name();
     
+    /* VERIF_NAME -> FAIL -> EXIT(0) */
     if(verif_name(0)){
         create_file();
         write_txt();
@@ -29,8 +30,8 @@ int main(void){
 }
 
 void print_intro(){
-    printf("\n              **CWFC FILE**\n");
-    printf("       Please, enter a file name with .txt.\n");
+    printf("\n               **CWFC FILE**\n");
+    printf("Please, enter a file name with .txt.\n");
     printf("When typing the text press enter ONLY AT THE END of the text.\n");
 }
 

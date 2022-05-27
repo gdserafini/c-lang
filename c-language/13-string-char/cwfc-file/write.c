@@ -6,6 +6,8 @@ void write_txt(){
     char char_write;
     int count_dot = 0, count_char = 4;
 
+    printf("\nEnter the text: ");
+
     fputc(TAB, f);
 
     do{
