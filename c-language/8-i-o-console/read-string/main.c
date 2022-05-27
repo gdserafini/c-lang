@@ -1,50 +1,33 @@
-//algoritm -> enter char by char = string
+//READ (CONSOLE) -> PRINT (STRING)
 
 #include <stdio.h>
 #include <stdlib.h>
 
+#define STR_LEN 256
+
 //**PROTOTYPE**
-void enter_print_strings(void);
-void read_string_char(void);
+void enter_string(char *string_enter);
+void print_string(char *string_print);
 
+/* ALGORITM STRUCT */
 int main(void){
-    int option;
+    char string[STR_LEN];
 
-    printf("\n1 - string, 2 - char: ");
-    scanf("%d", &option);
-
-    switch(option){
-        case 1:
-            enter_print_strings();
-            break;
-        case 2:
-            read_string_char();
-            break;
-        default:
-            printf("\nERROR\n");
-            exit(0);
-    }
+    enter_string(string);
+    print_string(string);
 
     return 0;
 }
 
 //**FUNCTIONS**
-
-//**read string -> print
-void enter_print_strings(){
-    char string[10];
-
-    scanf("%s", string);
-    printf("\n%s\n", string);
+/* TESTING -> FGETS AND FPUTS (STDIN AND STDOUT) */
+void enter_string(char *string_enter){
+    printf("\nEnter a string: ");
+    fgets(string_enter, STR_LEN, stdin);
 }
 
-//**??enter char by char -> put on the string??
-void read_string_char(){
-    char string2[10];
-
-    for(int i = 0; i < 10; i++){
-        scanf("%c\n", &string2[i]);
-    }
-
-    printf("%s\n", string2);
+void print_string(char *string_print){
+    printf("\n");
+    fputs(string_print, stdout);
+    printf("\n");
 }
