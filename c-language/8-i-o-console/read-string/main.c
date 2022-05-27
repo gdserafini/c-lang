@@ -1,7 +1,6 @@
 //READ (CONSOLE) -> PRINT (STRING)
 
 #include <stdio.h>
-#include <stdlib.h>
 
 #define STR_LEN 256
 
@@ -27,7 +26,7 @@ void enter_string(char *string_enter){
 }
 
 void print_string(char *string_print){
-    printf("\n");
+    printf("\n\n");
     fputs(string_print, stdout);
-    printf("\n");
+    printf("\n\n");
 }
