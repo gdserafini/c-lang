@@ -17,7 +17,7 @@ void create_file(){
 
 void verif_error_create(){
     if(f == NULL){
-        printf("\nERROR - OPEN FILE\n");
+        perror("\nERROR - OPEN FILE ");
         exit(0);
     }
 }

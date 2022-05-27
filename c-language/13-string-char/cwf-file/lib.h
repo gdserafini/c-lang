@@ -22,3 +22,6 @@ void verif_error_write(void);
 /* FORMAT */
 void format_txt_lines(int *count_ch);
 void format_txt_dot(int *count_d, int *count_ch);
+
+/* COPY */
+void secur_copy(void);

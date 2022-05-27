@@ -40,7 +40,7 @@ int verif_end_write(char char_end){
 
 void verif_error_write(){
     if(ferror(f)){
-        printf("\nERROR - WRITE\n");
+        perror("\nERROR - WRITE ");
         exit(0);
     }
 }
