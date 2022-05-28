@@ -3,6 +3,15 @@
 extern FILE* f;
 extern char file_name[STR_LEN];
 
+#ifdef TEST
+    void remove_scopy(){
+        remove("scopy.txt");
+        if(remove("scopy.txt")){
+            printf("\nscopy.txt removed\n");
+        }
+    }
+#endif
+
 void enter_file_name(){
     printf("\nEnter the file name: ");
     fgets(file_name, STR_LEN, stdin);

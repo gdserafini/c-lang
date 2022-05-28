@@ -7,12 +7,16 @@
 #define TAB '\t'
 #define DOT '.'
 #define COPY "copy-"
+#undef TEST
 
 /* CREATE */
 void enter_file_name(void);
 int verif_name(int n);
 void create_file(void);
 void verif_error_create(void);
+#ifdef TEST    
+    void remove_scopy(void);
+#endif
 
 /* WRITE */
 void write_txt(void);
@@ -25,3 +29,6 @@ void format_txt_dot(int *count_d, int *count_ch);
 
 /* COPY */
 void secur_copy(void);
+#ifdef TEST
+    void rename_file(void);
+#endif

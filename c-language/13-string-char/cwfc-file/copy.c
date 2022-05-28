@@ -19,4 +19,20 @@ void secur_copy(){
 
     fclose(f);
     fclose(fc);
+
+    //rename_file(); -> TEST
 }
+
+#ifdef TEST
+    void rename_file(){
+        char new_name[STR_LEN] = "original-";
+
+        strcat(new_name, file_name);
+
+        rename(file_name, new_name);
+
+        if(rename(file_name, new_name)){
+            printf("\nfile renamed\n");
+        }
+    }
+#endif

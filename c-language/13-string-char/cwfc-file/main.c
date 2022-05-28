@@ -16,6 +16,7 @@ int main(void){
     
     /* VERIF_NAME -> FAIL -> EXIT(0) */
     if(verif_name(0)){
+        //remove_scopy(); -> TEST
         create_file();
         write_txt();
         
