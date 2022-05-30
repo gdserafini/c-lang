@@ -1,10 +1,12 @@
 #include "lib.h"
 
-extern STUD s;
+extern char letter[STR_LEN];
 
 void order_or_search(int qnt_stud, STUD* s){
     int select;
     char answer;
+
+    order_name1(qnt_stud, s);
 
     do{
         print_select(&select);

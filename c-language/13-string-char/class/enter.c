@@ -1,5 +1,7 @@
 #include "lib.h"
 
+extern char letter[ALPHA];
+
 void enter_class_size(int *qnt_stud){
     fputs("\nEnter the number of students: ", stdout);
     scanf("%d", qnt_stud);

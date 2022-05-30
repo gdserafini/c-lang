@@ -4,16 +4,16 @@
 #include <ctype.h>
 #include <time.h>
 
+#define STR_LEN 15
+#define ALPHA 26
+#define ENTER '\n'
+
 struct students{
     int *notes;
     char **names;
 };
 
 typedef struct students STUD;
-
-#define STR_LEN 15
-#define ALPHA 26
-#define ENTER '\n'
 
 /* ENTER STUDENTS */
 void enter_class_size(int *qnt_stud);
@@ -42,3 +42,6 @@ void enter_name(char *name_search);
 void put_stud_file(int qnt_stud);
 void format_names(int qnt_stud);
 int is_misc(char ch, int *position);
+void print_students(int qnt_stud, STUD* s);
+void swap_students(STUD* s, int i, int j);
+void verif_letter(int i, int j, int k, STUD* s, int *num_char1, int *num_char2);
