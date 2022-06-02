@@ -14,6 +14,7 @@ void exemple5(void);
 void exemple6(void);
 void exemple7(void);
 void exemple8(void);
+void exemple9(void);
 
 int main(void){
     //exemple1();
@@ -23,7 +24,8 @@ int main(void){
     //exemple5();
     //exemple6();
     //exemple7();
-    exemple8();
+    //exemple8();
+    exemple9();
 
     return 0;
 }
@@ -85,4 +87,8 @@ void exemple8(){
         num2++;
         longjmp(ebuf, num2);
     }
+}
+
+void exemple9(){
+    system("/");
 }
