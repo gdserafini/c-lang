@@ -12,7 +12,7 @@ void create_file(char *name_create);
 void console_write_file();
 int console_end_file(char char_end);
 void format_text_file(int *count_format);
-void verif_file_name(char *name_verif);
+int is_txt(char *name_verif);
 
 FILE* f;
 
@@ -21,9 +21,15 @@ int main(){
     char file_name[STR_LEN];
 
     enter_file_name(file_name);
-    create_file(file_name);
-    console_write_file();
-    fclose(f);
+    if(is_txt(file_name)){
+        create_file(file_name);
+        console_write_file();
+        fclose(f);
+    }
+    else{
+        printf("\nERROR - ENTER A .TXT FILE NAME\n");
+        exit(0);
+    }
 
     return 0;
 }
@@ -34,8 +40,6 @@ int main(){
 void enter_file_name(char *name_enter){
     printf("\nEnter the file name: ");
     fgets(name_enter, STR_LEN, stdin);
-
-    verif_file_name(name_enter);
 }
 
 /* CREATE A .TXT FILE */
@@ -92,20 +96,15 @@ void format_text_file(int *count_format){
 }
 
 /* != .TXT -> ERROR */
-void verif_file_name(char *name_verif){
-    int equal = 0, len = strlen(name_verif);
-
-    for(int i = 0; i < len - 3; i++){
+int is_txt(char *name_verif){
+    for(int i = 0; i < strlen(name_verif) - 3; i++){
         if(name_verif[i] == '.' && 
         name_verif[i+1] == 't' &&
         name_verif[i+2] == 'x' &&
         name_verif[i+3] == 't'){
-            equal = 1;
+            return 1;
         }
     }
 
-    if(equal != 1){
-        printf("\nERROR - ENTER A .TXT FILE NAME\n");
-        exit(0);
-    }
+    return 0;
 }

@@ -3,16 +3,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//**PROTOTYPE**
-int file_is_ok(FILE* f);
-
 int main(void){
     FILE *f;
 
     f = fopen("main.txt", "r+");
     
     if(f == NULL){
-        printf("\nData base error.\n");
+        perror("\nERROR - OPEN FILE \n");
         exit(0);
     }
     else{
