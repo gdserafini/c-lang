@@ -41,19 +41,11 @@ void order_bubble2(int *num, int size){
     do{
         sw = 0; //BEGIN -> NO OPERATION
 
-        for(int i = 0; i < size - 2; i++){
+        for(int i = 0; i < size - 1; i++){
             if(num[i] > num[i+1]){
                 swap_order(&num[i], &num[i+1]);
 
                 sw = 1; //OPERT.
-            }
-        }
-
-        for(int i = size - 2; i > 0; i--){
-            if(num[i] > num[i+1]){
-                swap_order(&num[i], &num[i+1]);
-
-                sw = 1;
             }
         }
     }while(sw);  //WHILE THERE ARE OPERATION TO DO
