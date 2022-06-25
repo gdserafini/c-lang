@@ -18,9 +18,6 @@ int main(void){
     /* MAIN ALGORITM */
     //sequential_search(numbers, numbers[position]);
     qsort(numbers, SIZE, sizeof(int), comp_num);
-    for(int i = 0; i < SIZE; i++){
-        printf("%d", numbers[i]);
-    }
     int p = binary_search(numbers, numbers[position]);
     printf("\nNumber: %d\nPosition: %d\n", numbers[position], p+1);
 
