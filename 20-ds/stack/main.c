@@ -27,7 +27,7 @@ int main(void){
 
 /* STACK - IN/OUT FUNCTIONS */
 void push_stack(int *array){
-    if(count <= 10){
+    if(count <= STC_SIZE){
         array[ipush] = (ipush + 1);
     }
 }
