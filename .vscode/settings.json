@@ -1,6 +1,6 @@
 {
     "files.associations": {
         "stdio.h": "c",
-        "WRITE.C": "cpp"
+        "write.c": "c"
     }
 }

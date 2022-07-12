@@ -12,16 +12,14 @@ int numbers[QSIZE];
 void qstore(int number_store);
 void qretrieve(void);
 void print_numbers(void);
+void init_array(void);
 
 int main(void){
     int snumber, answer, choose;
 
     /* MAIN ALGORITM */
-    printf("\n***Queue exemple (infinite)***\n");
-
-    for(int i = 0; i < QSIZE; i++){ //INIT ARRAY -> NULL
-        numbers[i] = '\0';
-    }
+    printf("\n***Queue exemple 10 numbers***\n");
+    init_array();
 
     for( ; ; ){ //INFINITE LOOP
         printf("\nWhat do you want do?\n");
@@ -83,4 +81,10 @@ void print_numbers(){
     }
 
     printf("\n");
+}
+
+void init_array(){
+    for(int i = 0; i < QSIZE; i++){ //INIT ARRAY -> NULL
+        numbers[i] = '\0';
+    }
 }
