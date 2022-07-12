@@ -1,87 +1,90 @@
-/* DATA STRUCTURE -> STACK (EXEMPLE NUMBERS 1-10) */
+/* DATA STRUCTURE -> STACK (EXEMPLE - 10 NUMBERS */
 /* LAST IN, FIRST OUT */
 
 #include <stdio.h>
 
-#define STC_SIZE 10
+#define SSIZE 10
 
-void push_stack(int *array);
-int pop_stack(int *array, int i);
-void remove_stack(int *array, int i);
-void put_numbers(int *array);
-void remove_numbers(int *array);
-void print_numbers(int *array);
+void init_array(void);
+void pop_stack(void);
+void push_stack(int number);
+void print_numbers(void);
 
-/* GLOBAL COUNTERS */
-int ipush = 0, ipop = 0, count = 0;
+/* GLOBAL COUNTERS/ARRAY */
+int stackpos = 0;
+int numbers[SSIZE];
 
 int main(void){
-    int numbers[STC_SIZE] = {0,0,0,0,0,0,0,0,0,0};
+    int choose, pnumber;
 
     /* MAIN ALGORITM */
-    put_numbers(numbers);
-    remove_numbers(numbers);
+    printf("\n***Stack exemple (10 numbers)***\n");
+    init_array();
+
+    for( ; ; ){
+        printf("\nWhat do you want do?\n");
+        printf("1 to push a number, 2 to pop the last number: ");
+        scanf(" %d", &choose); //CHOOSE IN STACK
+
+        /* PUSH (AND ENTER A NUMBER) OR POP */
+        switch(choose){
+            case 1:
+                printf("\nEnter the number you want push: ");
+                scanf(" %d", &pnumber);
+                push_stack(pnumber);
+                print_numbers();
+                break;
+            case 2:
+                pop_stack();
+                print_numbers();
+                break;
+            default:
+                printf("\nEnter 1 or 2.\n");
+                break;
+        }
+    }
 
     return 0;
 }
 
-/* STACK - IN/OUT FUNCTIONS */
-void push_stack(int *array){
-    if(count <= STC_SIZE){
-        array[ipush] = (ipush + 1);
+void init_array(){
+    for(int i = 0; i < SSIZE; i++){
+        numbers[SSIZE] = '\0';
     }
 }
 
-int pop_stack(int *array, int i){
-    if(count > 0){
-        return array[i];
+void pop_stack(){
+    stackpos--;
+
+    if(stackpos < 0){
+        printf("\nEmpty\n");
+    }
+    else{
+        numbers[stackpos] = '\0';
     }
 }
 
-void remove_stack(int *array, int i){
-    array[i] = 0;
+void push_stack(int number){
+    if(stackpos == SSIZE){
+        printf("\nFull.\n");
+    }
+    else{
+        numbers[stackpos] = number;
+        stackpos++;
+    }
 }
-/**/
 
-/* NUM = IPUSH + 1 */
-void put_numbers(int *array){
-    print_numbers(array);
+void print_numbers(){
+    printf("\n");
 
-    do{
-        push_stack(array);
-        if(ipush == 0){ //ERRO-> IF PRINT PUSH_STACK
-            int num = 1;
-            printf("%d\n", num);
+    for(int i = 0; i < SSIZE; i++){
+        if(numbers[i] == '\0'){
+            printf("   ");
         }
         else{
-            print_numbers(array);
-        }
-        ipush++; count++;
-    }while(count < 10);
-
-    ipush--;
-}
-
-/* NUM = 0 -> UNPRINTED */
-void remove_numbers(int *array){
-    ipop = count - 1;
-
-    do{
-        remove_stack(array, ipop);
-        print_numbers(array);
-        ipop--; count--;
-    }while(count > 0);
-}
-
-/* SPACE */
-void print_numbers(int *array){
-    for(int i = 0; i < STC_SIZE; i++){
-        if(array[i] == 0){
-            printf("  ");
-        }
-        else{
-            printf("%d ", pop_stack(array, i));
+            printf("%d ", numbers[i]);
         }
     }
+
     printf("\n");
 }

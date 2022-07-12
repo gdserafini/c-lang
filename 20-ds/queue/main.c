@@ -15,7 +15,7 @@ void print_numbers(void);
 void init_array(void);
 
 int main(void){
-    int snumber, answer, choose;
+    int snumber, choose;
 
     /* MAIN ALGORITM */
     printf("\n***Queue exemple 10 numbers***\n");
