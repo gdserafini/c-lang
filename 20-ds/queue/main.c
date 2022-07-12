@@ -25,7 +25,7 @@ int main(void){
 
     for( ; ; ){ //INFINITE LOOP
         printf("\nWhat do you want do?\n");
-        printf("1 for store a number, 2 for retrieve the first number: ");
+        printf("1 to store a number, 2 to retrieve the first number: ");
         scanf(" %d", &choose); //CHOOSE IN QUEUE
 
         switch(choose){ //QSTORE OR QRETRIEVE AND PRINT
