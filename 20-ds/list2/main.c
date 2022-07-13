@@ -1,4 +1,4 @@
-/* DATA STRUCTURE -> SINGLY LINKED LIST*/
+/* DATA STRUCTURE -> DOUBLY LINKED LIST*/
 /* EXEMPLE -> 10 NUMBERS*/
 
 #include <stdio.h>
@@ -6,15 +6,16 @@
 
 #define LSIZE 10
 
-/* STRUCT WITH AN INT NUMBER AND ADDRESS FOR THE NEXT STRUCT */
+/* STRUCT WITH AN INT NUMBER AND ADDRESS FOR THE NEXT AND PREVIUOS STRUCT */
 struct numbers{
     int num;
     struct numbers *next;
+    struct numbers *prev;
 };
 
 void slstore(struct numbers *n);
 void init_list(struct numbers *n);
-void print_list_address(struct numbers *n);
+void print_list(struct numbers *n);
 
 int main(void){
     struct numbers n[LSIZE];
@@ -24,7 +25,7 @@ int main(void){
     init_list(n);
     /* CREATE/OUT LIST */
     slstore(n);
-    print_list_address(n);
+    print_list(n);
 
     return 0;
 }
@@ -47,15 +48,15 @@ void slstore(struct numbers *n){
 
     printf("\nEnter a number you want put in the list: ");
     scanf(" %d", &n[9].num);
+    n[9].next = &n[0];
 }
 
-void print_list_address(struct numbers *n){
-    printf("\n\n");
-
-    while(n){
-        printf("\nPointer: %d", n->next);
-        n = n->next;
-    };
+void print_list(struct numbers *n){
+    printf("\nNumber: %d\nAddress: %d", n[0].num, n[9].next);
+    
+    for(int i = 1; i < LSIZE; i++){
+        printf("\nNumber: %d\nAddress: %d", n[i].num, n[i-1].next);
+    }
 
     printf("\n\n");
 }
