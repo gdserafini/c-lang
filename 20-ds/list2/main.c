@@ -3,60 +3,77 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #define LSIZE 10
+#define NMAX 100
 
-/* STRUCT WITH AN INT NUMBER AND ADDRESS FOR THE NEXT AND PREVIUOS STRUCT */
+/* STRUCT WITH AN INT NUMBER AND ADDRESS FOR THE NEXT AND PRIOR STRUCT */
 struct numbers{
     int num;
     struct numbers *next;
-    struct numbers *prev;
+    struct numbers *prior;
 };
 
-void slstore(struct numbers *n);
+void dlstore(struct numbers *n);
 void init_list(struct numbers *n);
-void print_list(struct numbers *n);
+void print_list_address(struct numbers *n);
+int pointer_defined(struct numbers *n);
 
 int main(void){
     struct numbers n[LSIZE];
 
     /* MAIN ALGORITM */
+    srand(time(0));
     printf("\n***Linked list exemple (10 numbers)***\n");
     init_list(n);
     /* CREATE/OUT LIST */
-    slstore(n);
-    print_list(n);
+    dlstore(n);
+    print_list_address(n);
 
     return 0;
 }
 
 void init_list(struct numbers *n){
     for(int i = 0; i < LSIZE; i++){
-        n[i].num = '\0';
         n[i].next = NULL;
+        n[i].prior = NULL;
     }
 }
 
 /* CREATE THE LINKED LIST */
-void slstore(struct numbers *n){
-    for(int i = 0; i < LSIZE-1; i++){
-        printf("\nEnter a number you want put in the list: ");
-        scanf(" %d", &n[i].num);
+void dlstore(struct numbers *n){
+    n[0].num = rand() % NMAX;
+    n[0].next = &n[1];
 
+    for(int i = 1; i < LSIZE-1; i++){
+        n[i].num = rand() % NMAX;
         n[i].next = &n[i+1];
+        n[i].prior = &n[i-1];
     }
 
-    printf("\nEnter a number you want put in the list: ");
-    scanf(" %d", &n[9].num);
-    n[9].next = &n[0];
+    n[9].num = rand() % NMAX;
+    n[9].prior = &n[8];
 }
 
-void print_list(struct numbers *n){
-    printf("\nNumber: %d\nAddress: %d", n[0].num, n[9].next);
-    
-    for(int i = 1; i < LSIZE; i++){
-        printf("\nNumber: %d\nAddress: %d", n[i].num, n[i-1].next);
-    }
+void print_list_address(struct numbers *n){
+    printf("\n");
 
-    printf("\n\n");
+    while(pointer_defined(n)){
+        printf("\nNumber: %d", n->num);
+        printf("\n  Prior: %d", n->prior);
+        printf("\n  Next: %d\n", n->next);
+        n = n->next;
+    }    
+
+    printf("\n");
+}
+
+int pointer_defined(struct numbers *n){
+    if(n){
+        return 1;
+    }
+    else{
+        return 0;
+    }
 }
