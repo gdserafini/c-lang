@@ -47,6 +47,7 @@ void slstore(struct numbers *n){
 
     printf("\nEnter a number you want put in the list: ");
     scanf(" %d", &n[9].num);
+    n[9].next = NULL;
 }
 
 void print_list_address(struct numbers *n){

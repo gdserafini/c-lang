@@ -45,6 +45,7 @@ void init_list(struct numbers *n){
 void dlstore(struct numbers *n){
     n[0].num = rand() % NMAX;
     n[0].next = &n[1];
+    n[0].prior = NULL;
 
     for(int i = 1; i < LSIZE-1; i++){
         n[i].num = rand() % NMAX;
@@ -54,6 +55,7 @@ void dlstore(struct numbers *n){
 
     n[9].num = rand() % NMAX;
     n[9].prior = &n[8];
+    n[9].next = NULL;
 }
 
 void print_list_address(struct numbers *n){
