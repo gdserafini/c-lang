@@ -9,24 +9,21 @@ and binary search*/
 #define TSIZE 10 //tree size
 #define NMAX 100 //n° max in rand()
 
-typedef struct node{
+//element of binary tree
+typedef struct node_binary_tree{
     int data; 
 
     struct node *right; 
     struct node *left;
-} NODE;
+} Node;
 
-/* place a aleatory number in each array position */
-void init_array(int *array){
-    for(int i = 0; i < TSIZE; i++){
-        array[i] = rand() % NMAX;
-    }
-}
+Node *insert(Node *root, int data){
+    Node *current = NULL;
+    Node *parent = NULL;
+    Node *temp = (Node*)malloc(sizeof(Node));
 
-NODE *insert(NODE *root, int data){
-    NODE *temp = (NODE*)malloc(sizeof(NODE));
-
-    temp->data = data; //enter a number and clean the pointers
+    //temporary struct Node -> root
+    temp->data = data; 
     temp->right = NULL;
     temp->left = NULL;
 
@@ -34,8 +31,8 @@ NODE *insert(NODE *root, int data){
         root = temp;
     }
     else{
-        NODE *current = root;
-        NODE *parent = NULL;
+        *current = root;
+        *parent = NULL;
 
         while(1){
             parent = current;
@@ -59,34 +56,32 @@ NODE *insert(NODE *root, int data){
         }
     }
 
-    return root; //return root pointer
+    return root;
 }
 
-void print_inorder(NODE *root){
-    if(root != NULL){
-        print_inorder(root->left);
+void print_tree(Node *root){
+    if(root){
+        print_tree(root->left);
         printf("%d ", root->data);
-        print_inorder(root->right);
+        print_tree(root->right);
     }
 }
 
 int main(void){
-    NODE n[TSIZE];
-    int array[TSIZE];
+    int aleat_num;
 
     /* MAIN ALGORITM */
     srand(time(0));
-    init_array(array);
 
     //create a binary tree
-    int i;
-    NODE *root = NULL;
+    Node *root = NULL;
 
-    for(i = 0; i < TSIZE; i++){
-        root = insert(root, array[i]);
+    for(int i = 0; i < TSIZE; i++){ //create a number and insert in the tree
+        aleat_num = rand() % NMAX;
+        root = insert(root, aleat_num);
     }
 
-    print_inorder(root);
+    print_tree(root);
 
     return 0;
 }
